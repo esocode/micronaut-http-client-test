@@ -1,0 +1,10 @@
+micronaut:
+  application:
+    name: micronaut-http-client-test
+  http:
+    services:
+      service:
+        urls:
+          - http://localhost:8080
+  server:
+    port: 8081
