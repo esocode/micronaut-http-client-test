@@ -1,1 +1,3 @@
 rootProject.name="micronaut-http-client-test"
+
+includeFlat 'micronaut-http-test-lib'

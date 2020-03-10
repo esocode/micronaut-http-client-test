@@ -14,12 +14,27 @@ repositories {
     maven { url "https://jcenter.bintray.com" }
 }
 
+configurations.all {
+
+    resolutionStrategy.dependencySubstitution.all {  DependencySubstitution dependency ->
+        if (dependency.requested instanceof ModuleComponentSelector &&
+        dependency.requested.group == "io.micronaut.test") {
+            def targetProject = findProject(":${dependency.requested.module}")
+            if (targetProject != null) {
+                dependency.useTarget targetProject
+            }
+        }
+    }
+}
+
 configurations {
     // for dependencies that are needed for development only
     developmentOnly 
 }
 
 dependencies {
+    implementation 'io.micronaut.test:micronaut-http-test-lib'
+
     annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-validation"
