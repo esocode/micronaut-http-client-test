@@ -12,7 +12,7 @@ import io.micronaut.runtime.Micronaut;
 public class Application {
 
     @Inject
-    private ServiceClient service;
+    private ServiceBean serviceBean;
 
     public static void main(final String[] args) {
         Micronaut.run(Application.class);
@@ -22,7 +22,6 @@ public class Application {
     void runApp() throws MalformedURLException {
         System.out.println(
             "*********************************************************");
-        System.out.println(
-            "ID of 'Test': " + service.getIdForName("Test").blockingGet());
+        System.out.println("ID of 'test': " + serviceBean.getId());
     }
 }
